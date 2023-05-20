@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"github.com/giovannirizzolo/webserver/routers"
 	"github.com/giovannirizzolo/webserver/models"
-	"github.com/giovannirizzolo/webserver/middlewares"
+	"github.com/giovannirizzolo/webserver/middlewares/logging"
 )
 
 var animals = []models.Animal{
@@ -27,7 +27,7 @@ func main() {
 
 	// Define your route handlers before starting the server
 	router := routers.InitRouter()
-	router.Use(middlewares.LoggingMiddleware)
+	router.Use(logging.LoggingMiddleware)
 
 
 	if err := http.ListenAndServe(":8080", router); err != nil {
