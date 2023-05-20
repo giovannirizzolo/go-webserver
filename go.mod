@@ -1,4 +1,4 @@
-module example.com/webserver/m/v2
+module github.com/giovannirizzolo/webserver
 
 go 1.20
 

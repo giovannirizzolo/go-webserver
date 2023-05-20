@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
-	"example.com/handlers"
+	"github.com/giovannirizzolo/webserver/routers"
 )
 
 type Animal struct {
@@ -32,9 +31,7 @@ func main() {
 	fmt.Println("Starting server at port 8080")
 
 	// Define your route handlers before starting the server
-	router := mux.NewRouter()
-
-	router.HandleFunc("/animals", handlers.AnimalsHandler).Methods("GET")
+	router := routers.InitRouter()
 
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
