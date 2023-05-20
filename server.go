@@ -5,16 +5,11 @@ import (
 	"log"
 	"net/http"
 	"github.com/giovannirizzolo/webserver/routers"
+	"github.com/giovannirizzolo/webserver/models"
+	"github.com/giovannirizzolo/webserver/middlewares"
 )
 
-type Animal struct {
-	Name   string `json:"name"`
-	Breed  string `json:"breed"`
-	LegNum int    `json:"legNum"`
-}
-
-
-var animals = []Animal{
+var animals = []models.Animal{
 	{
 		Name: "Gionni",
 		Breed: "Canazzo di bancata",
@@ -32,6 +27,8 @@ func main() {
 
 	// Define your route handlers before starting the server
 	router := routers.InitRouter()
+	router.Use(middlewares.LoggingMiddleware)
+
 
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
