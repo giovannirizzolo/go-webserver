@@ -1,11 +1,11 @@
 package main
 
 import (
-	// "encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
+	"example.com/handlers"
 )
 
 type Animal struct {
@@ -34,8 +34,7 @@ func main() {
 	// Define your route handlers before starting the server
 	router := mux.NewRouter()
 
-	router.HandleFunc("/animals", AnimalsHandler).Methods("GET")
-	router.HandleFunc("/animals/{id:[a-zA-Z0-9]+}", AnimalHandler).Methods("GET")
+	router.HandleFunc("/animals", handlers.AnimalsHandler).Methods("GET")
 
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
@@ -46,20 +45,6 @@ func createAnimalHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func AnimalHandler(w http.ResponseWriter, r *http.Request) {
-
-	vars := mux.Vars(r)
-	w.WriteHeader(http.StatusOK)
-	fmt.Printf("Animal id: %v", vars["id"])
-	fmt.Fprintf(w, "Animal id: %v", vars["id"])
-}
-
-func AnimalsHandler(w http.ResponseWriter, r *http.Request) {
-
-	w.WriteHeader(http.StatusOK)
-	// fmt.Printf("Animals: %v",["id"])
-	// fmt.Fprintf(w, "Animal id: %v", vars["id"])
-}
 
 
 
