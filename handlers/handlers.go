@@ -1,9 +1,11 @@
 package handlers
 
 import (
+	
+	"fmt"
 	"net/http"
+
 	"github.com/gorilla/mux"
-	"fmt"	
 )
 
 func AnimalHandler(w http.ResponseWriter, r *http.Request) {
@@ -19,4 +21,13 @@ func AnimalsHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	// fmt.Printf("Animals: %v",["id"])
 	// fmt.Fprintf(w, "Animal id: %v", vars["id"])
+}
+
+func HomeHandler(w http.ResponseWriter, r *http.Request){
+	w.WriteHeader(http.StatusOK)	
+
+	// data, err := w.Write(json)
+
+	// fmt.Print(data)
+	// fmt.Print(err)
 }
